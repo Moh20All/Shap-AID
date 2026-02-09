@@ -1,0 +1,716 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>💊 SHAP-AID: Vision &amp; Execution Board</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="301a9854-c7bd-8069-8ab2-fa4a8bc81272" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🫀</span></div><h1 class="page-title" dir="auto"><strong>💊 SHAP-AID: Vision &amp; Execution Board</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><table id="301a9854-c7bd-806c-b0a7-e88e4fefd862" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-80ff-b5a7-fe868c399578"><th id="WAg|" class="simple-table-header-color simple-table-header"><strong>1. Predictive Accuracy</strong></th><th id="uFae" class="simple-table-header-color simple-table-header"><strong>2. Radical Transparency</strong></th><th id="QgcC" class="simple-table-header-color simple-table-header"><strong>3. Clinical Safety</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-80d4-8bdd-d134c2c917c7"><td id="WAg|" class="">Using LSTM &amp; XGBoost to handle complex patient data (Time-series + Genomics).</td><td id="uFae" class="">No &quot;Black Boxes.&quot; Every prediction must be backed by SHAP or SurvSHAP visuals.</td><td id="QgcC" class="">Detect bias, flag unstable predictions, and warn clinicians of low-quality data.</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="301a9854-c7bd-80e7-b256-e43cd7393a44" class="">Project Architecture </h1></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-80df-93cd-cdfc86afc99d" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="301a9854-c7bd-80db-8a04-cd2f7c42764d" class="image"><a href="Untitled_diagram-2026-02-08-205347.png"><img style="width:3892px" src="Untitled_diagram-2026-02-08-205347.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-80f7-916d-e0513cd2b4f5" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="301a9854-c7bd-80e2-994e-ff7db48d5b3d" class="">Timeline</h1></div><div style="display:contents" dir="auto"><h3 id="301a9854-c7bd-805a-b6d6-cbd818f8f94b" class=""><strong>Phase 1: Discovery &amp; Data Prep (Weeks 1–3)</strong></h3></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-8023-b829-c6014f381a17" class=""><em>Focus: Preparing the raw materials.</em></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80eb-81b6-de6de1ace5cb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Literature Review:</strong> Study <code>SurvSHAP(t)</code> and <code>CorrSHAP</code>.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8013-bc98-cfa45c01fae3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Data Acquisition:</strong> Download and explore datasets.</span><div class="indented"><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80c8-ac27-cdf728ef89eb" class="bulleted-list"><li style="list-style-type:disc"><em>Target:</em> NHANES (general health), TCGA (cancer), or OpenFDA.</li></ul></div></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-808b-8240-d7cfdc025bb8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Preprocessing Pipeline:</strong> Handle missing values and normalize data.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-800c-8edc-fc35be57b179" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Feature Selection:</strong> Identify key features (age, BMI, CYP2D6 variants) and remove multicollinearity.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="301a9854-c7bd-80e6-9b2c-cc0b82a685b6" class=""><strong>Phase 2: AI Engine Development (Weeks 4–7)</strong></h3></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-8056-8d98-e9cf387dad67" class=""><em>Focus: Building the backend logic.</em></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-802b-84af-f23cdf4368ae" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Baseline Models:</strong> Train simple models (Linear Regression, Random Forest) to set a benchmark.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8074-87ce-fcf2733118e2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Advanced Models:</strong> Train XGBoost (tabular) and LSTM (time-series) on processed data.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80fc-89e4-c76918ed4b0b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>SHAP Integration:</strong> Implement <code>shap</code> library in Python to generate local explanations for predictions.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-808e-960d-d796c336fbda" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Model Comparison:</strong> Compare accuracy vs. F1-score across all models.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="301a9854-c7bd-802e-a1dc-d1c4a4b6fa97" class=""><strong>Phase 3: Prototype &amp; Dashboard (Weeks 8–11)</strong></h3></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-8049-ae02-c6f3ac6bfce7" class=""><em>Focus: Building the UI/UX.</em></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-806a-a9ed-f53dbec7f283" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Frontend Setup:</strong> Initialize React (or Streamlit for faster iteration).</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-802f-8b31-c8bd190efdd5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Input Interface:</strong> Build &quot;Patient Upload&quot; and &quot;Model Selection&quot; screens.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8049-9d05-d74bc95bfad9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Visualization Components:</strong> Create SHAP bar charts (red/blue bars) using a charting library (e.g., Recharts or Plotly).</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80a7-8cda-da74f778a5ad" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Integration:</strong> Connect the Python backend (Flask/FastAPI) to the frontend.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="301a9854-c7bd-8091-9df0-d12f07f2c07d" class=""><strong>Phase 4: Audit &amp; Thesis Evaluation (Weeks 12–14)</strong></h3></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-8002-84d9-cc0d76230b2a" class=""><em>Focus: Meeting thesis requirements.</em></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-800f-b9bb-f8c6446271cd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Stability Test:</strong> Run 5-fold cross-validation and measure SHAP value changes (stability metric).</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-803d-815d-d3a9c064d84a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Bias Check:</strong> Test the model across demographic groups to ensure fairness.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8034-92ba-f37ac1e8e9df" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Trust Monitor:</strong> Build logic for safety alerts (e.g., if prediction confidence is high but data is sparse, trigger alert).</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="301a9854-c7bd-80f4-9246-f21312b58170" class=""><strong>Phase 5: Polish &amp; Documentation (Weeks 15–16)</strong></h3></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-808f-b418-dd99e9b98a64" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Final UI Polish:</strong> Add dark mode styling and mobile responsiveness.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8050-83be-d47a3f9bd1f9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Thesis Writing:</strong> Document architecture, stability results, and clinical relevance.</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80f1-9ae2-d6f9612481cd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Demo Prep:</strong> Record a video walkthrough of a patient scenario (e.g., oncology case).</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="ltr"><figure id="301a9854-c7bd-8025-a894-c6c9223393bd" class="image"><a href="API_Exchange_Token_Flow-2026-02-08-205403.png"><img style="width:1008px" src="API_Exchange_Token_Flow-2026-02-08-205403.png"/></a></figure></div><div style="display:contents" dir="auto"><hr id="301a9854-c7bd-806d-b2c7-d3ebcfa6a5f5"/></div><div style="display:contents" dir="auto"><h2 id="301a9854-c7bd-8066-ad47-f5c2ed3813a0" class="">Tech Stack &amp; Resources</h2></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-805a-a3d7-d2eb776b6a95" class=""><strong>Core Technology</strong></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80ca-9675-f0419e65b2b4" class="bulleted-list"><li style="list-style-type:disc"><strong>Language:</strong> Python 3.9+</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80a7-ae6b-db96c41c60c3" class="bulleted-list"><li style="list-style-type:disc"><strong>ML Libraries:</strong> PyTorch/TensorFlow (for LSTM), XGBoost, Scikit-Learn</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8002-b620-c1cbe13f1b46" class="bulleted-list"><li style="list-style-type:disc"><strong>Explainability:</strong> <code>shap</code>, <code>survshap</code> (Python packages)</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8063-bd13-e805e51c0e7a" class="bulleted-list"><li style="list-style-type:disc"><strong>Frontend:</strong> React.js (custom UI) or Streamlit (rapid prototyping)</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8036-babf-d6202e64b700" class="bulleted-list"><li style="list-style-type:disc"><strong>Backend:</strong> FastAPI (recommended for ML) or Flask</li></ul></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-809b-a0a5-fcb2ef5fdf93" class=""><strong>Data Sources</strong></p></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80b3-b2f3-c645fb2ba54a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://wwwn.cdc.gov/nchs/nhanes/">📂 NHANES (CDC Data)</a></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-804a-8aea-ee6709f99d99" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.cbioportal.org/">🧬 cBioPortal (Cancer Genomics)</a></li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-80d9-bf14-f7623b6f282f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://physionet.org/content/mimiciii/">🏥 MIMIC-III (ICU Data)</a></li></ul></div><div style="display:contents" dir="auto"><hr id="301a9854-c7bd-80d4-9d54-e3bb1354a912"/></div><div style="display:contents" dir="auto"><h2 id="301a9854-c7bd-806d-aa5c-df8570f3c4fe" class="">🧪 Experiments Tracker (Database)</h2></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-803e-b05e-ef9527a88b5e" class=""><em>Create a Notion Database with these columns to track your ML experiments.</em></p></div><div style="display:contents" dir="ltr"><table id="301a9854-c7bd-8098-aca1-fce8074cef51" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-8068-a624-fa502b1716f7"><td id="dM[{" class=""><strong>Experiment Name</strong></td><td id="aLKW" class=""><strong>Model Type</strong></td><td id="OFBT" class="" style="width:87px"><strong>Accuracy</strong></td><td id="Aori" class="" style="width:75px"><strong>F1 Score</strong></td><td id="S{Ir" class="" style="width:109px"><strong>SHAP Stability</strong></td><td id="LiHJ" class="" style="width:219.828125px"><strong>Notes</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-8080-9dad-e0814c2d113b"><td id="dM[{" class=""><em>Baseline_LogReg</em></td><td id="aLKW" class="">Logistic Regression</td><td id="OFBT" class="" style="width:87px">72%</td><td id="Aori" class="" style="width:75px">0.68</td><td id="S{Ir" class="" style="width:109px">High</td><td id="LiHJ" class="" style="width:219.828125px">Good baseline, but misses non-linear patterns.</td></tr></div><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-80fe-81c7-f6b9db2f05e4"><td id="dM[{" class=""><em>XGBoost_v1</em></td><td id="aLKW" class="">XGBoost</td><td id="OFBT" class="" style="width:87px">89%</td><td id="Aori" class="" style="width:75px">0.86</td><td id="S{Ir" class="" style="width:109px">Medium</td><td id="LiHJ" class="" style="width:219.828125px">Strong performance, but heavily relies on Age.</td></tr></div><div style="display:contents" dir="ltr"><tr id="301a9854-c7bd-8032-b0d9-e3e734581e82"><td id="dM[{" class=""><em>LSTM_TimeSeries</em></td><td id="aLKW" class="">LSTM</td><td id="OFBT" class="" style="width:87px">94%</td><td id="Aori" class="" style="width:75px">0.91</td><td id="S{Ir" class="" style="width:109px">Low</td><td id="LiHJ" class="" style="width:219.828125px">Excellent prediction, but SHAP values fluctuate (Unstable).</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="301a9854-c7bd-802f-80d8-defe6de71811"/></div><div style="display:contents" dir="auto"><h2 id="301a9854-c7bd-801b-bea9-f59e24c33ae1" class="">Startup &amp; Scale Potential (Future Ideas)</h2></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8088-baae-d84a5af71ce9" class="bulleted-list"><li style="list-style-type:disc"><strong>Integration:</strong> Add FHIR/HL7 API support for hospital EHRs.</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-8040-afc0-fd5ec1234614" class="bulleted-list"><li style="list-style-type:disc"><strong>Commercial Model:</strong> &quot;Freemium&quot; for research, Subscription for Clinics.</li></ul></div><div style="display:contents" dir="auto"><ul id="301a9854-c7bd-800c-be3b-e39641aaf276" class="bulleted-list"><li style="list-style-type:disc"><strong>Mobile App:</strong> A lightweight version for doctors on rounds.</li></ul></div><div style="display:contents" dir="auto"><hr id="301a9854-c7bd-8008-8e6f-f49297eb22ce"/></div><div style="display:contents" dir="auto"><h2 id="301a9854-c7bd-8015-8b55-f4505aadffc8" class="">User Journey Flow</h2></div><div style="display:contents" dir="ltr"><figure id="301a9854-c7bd-807e-a39d-ff30e1e851db" class="image"><a href="API_Exchange_Token_Flow-2026-02-08-205419.png"><img style="width:6850px" src="API_Exchange_Token_Flow-2026-02-08-205419.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="301a9854-c7bd-800d-b009-ca8b55377d62" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="301a9854-c7bd-80eb-8d20-c4d8a3cf94ef" class="">Proposed DB structure</h2></div><div style="display:contents" dir="ltr"><figure id="301a9854-c7bd-80e5-a757-e28925b104f6" class="image"><a href="API_Exchange_Token_Flow-2026-02-08-205430.png"><img style="width:3294px" src="API_Exchange_Token_Flow-2026-02-08-205430.png"/></a></figure></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

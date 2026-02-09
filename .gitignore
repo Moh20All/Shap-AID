@@ -1,0 +1,14 @@
+# Backend
+backend/venv/
+backend/__pycache__/
+backend/*.pkl
+backend/.env
+backend/*.pyc
+
+# Local Development
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
